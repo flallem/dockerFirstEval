@@ -8,7 +8,7 @@ It generates :
 	- a docker container updated on docker hub 
 	- a REST API 
 
-## Applidation goal
+## Application goal
 This application will then be used by student
 
 

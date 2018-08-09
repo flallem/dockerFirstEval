@@ -3,13 +3,13 @@ help: ## Show this help.
 
 
 build: ## create docker image
-	(echo "build-front";docker build -t docker-first-eval-front .)
+	(echo "build-geoip";docker build -t image-first-eval-geoip .)
 
 test: ## launch a docker container 
 	(make build; make run ; echo "Test launched")
 
 run: ## launch a docker container 
-	(docker run -p 80:80 --link eval-geoip:geoip.loc --name eval-front docker-first-eval-front)
+	(docker run -d --rm --name eval-geoip image-first-eval-geoip)
 
 
 

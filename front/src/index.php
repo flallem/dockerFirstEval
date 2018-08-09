@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Docker LAb - First Evaluation</title>
+<title>Docker Lab - First Evaluation</title>
 <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="default" />
 
 </head>
@@ -32,16 +32,18 @@
 
 <?php
 # Get geo information 
-$response = file_get_contents('http://freegeoip.net/json');                   
+$response = file_get_contents('http://geoip.loc:8080/json');                   
 $response = json_decode($response);
 
 # Print the data
 ?>
 			<center>
-				<h1>Information collected from an external website</h1>
-				<div id=info-description">freegeoip is a free web service returning informations in a json format about your connexion.
-					<b>if the following information are not displayed, please fix it before going further</b>
+				<h1>Information collected from an other container</h1>
+				<br/>
+				<div id=info-description">freegeoip is a a third tier web service returning informations in a json format about your connexion.
+					<b>if the public ip adress information is not displayed, please fix it before going further</b>
 				</div>
+				<br/>
 				<img src="images/world.jpg" width="600"/>
 				<br/>
 				<br/>
@@ -50,7 +52,7 @@ $response = json_decode($response);
 				<h1>Your City</h1><h2><?php echo $response->city; ?> <?php echo $response->region_name; ?></h2>
 				<h1>Your Time Zone</h1><h2><?php echo $response->time_zone; ?></h2>
 				<h1>Your Lattitude / Longitude</h1><h2><?php echo $response->latitude; ?> / <?php echo $response->longitude; ?></h2>
-				<p>This information has been retrieved from <a href="http://freegeoip.net">freegeoip.net</a>.</p>
+				<p>This information has been retrieved from a local container </p>
 		
 			</center>
 			</div>
