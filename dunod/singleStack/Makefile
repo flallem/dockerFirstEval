@@ -9,8 +9,20 @@ build: ## validate
 
 run: ## launch a docker container 
 	echo $(CWD)
-	docker stop mono_sympho  || echo "no container running"
+	docker rm mono_sympho  || echo "no container running"
 	docker run -d --rm -p80:80 -v $(CWD)/myapp:/var/www/myapp/web/ --name mono_sympho monolite:latest
+
+run-debug: ## launch a docker container synchronously 
+	echo $(CWD)
+	docker rm mono_sympho  || echo "no container running"
+	docker run --rm -p80:80 -v $(CWD)/myapp:/var/www/myapp/web/ --name mono_sympho monolite:latest 
+
+run-exec: ## launch a docker container with bash
+	echo $(CWD)
+	docker rm mono_sympho  || echo "no container running"
+	docker run --rm -p80:80 -v $(CWD)/myapp:/var/www/myapp/web/ -it --entrypoint "/bin/bash" --name mono_sympho monolite:latest 
+
+
 
 stop: ## launch a docker container 
 	docker stop mono_sympho 

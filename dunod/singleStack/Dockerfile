@@ -8,6 +8,9 @@ RUN yum install -y epel-release && \
 
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY myapp/* /var/www/myapp/web/
+COPY supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 80
+VOLUME ["/var/www/myapp/web"]
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+CMD ["/bin/supervisord" , "-n" , "-c" , "/etc/supervisor/conf.d/supervisord.conf"]
+#ENTRYPOINT ["nginx", "-g", "daemon off;"]
